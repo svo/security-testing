@@ -2,6 +2,13 @@
 - hosts: all
 
   pre_tasks:
+    - name: Using less known mirror
+      replace:
+        path: /etc/apt/sources.list
+        regexp: 'http.kali.org'
+        replace: 'mirrors.ocf.berkeley.edu'
+      become: yes
+
     - name: Update apt cache
       apt: update_cache=yes
       become: yes
@@ -9,3 +16,6 @@
     - name: Install avahi for MDNS
       apt: pkg=avahi-daemon
       become: yes
+
+  roles:
+    - arachni
