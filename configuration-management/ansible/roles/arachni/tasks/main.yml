@@ -1,23 +1,10 @@
-- name: Download arachni 1
-  get_url:
-    url: https://github.com/Arachni/arachni/releases/download/v1.5.1/arachni-1.5.1-0.5.12-linux-x86_64.tar.gz
-    dest: /usr/lib/arachni-1.5.1-0.5.12-linux-x86_64.tar.gz
-  become: yes
-
-- name: Move arachni 1 into lib directory
-  unarchive:
-    src: /usr/lib/arachni-1.5.1-0.5.12-linux-x86_64.tar.gz
-    dest: /usr/lib
-    remote_src: yes
-  become: yes
-
-- name: Download arachni 2
+- name: Download arachni
   get_url:
     url: https://downloads.arachni-scanner.com/nightlies/arachni-2.0dev-1.0dev-linux-x86_64.tar.gz
     dest: /usr/lib/arachni-2.0dev-1.0dev-linux-x86_64.tar.gz
   become: yes
 
-- name: Move arachni 2 into lib directory
+- name: Move arachni into lib directory
   unarchive:
     src: /usr/lib/arachni-2.0dev-1.0dev-linux-x86_64.tar.gz
     dest: /usr/lib
