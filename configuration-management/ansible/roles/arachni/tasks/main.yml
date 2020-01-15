@@ -1,12 +1,18 @@
 - name: Download arachni
   get_url:
     url: https://downloads.arachni-scanner.com/nightlies/arachni-2.0dev-1.0dev-linux-x86_64.tar.gz
-    dest: /usr/lib/arachni-2.0dev-1.0dev-linux-x86_64.tar.gz
+    dest: /vagrant/arachni-2.0dev-1.0dev-linux-x86_64.tar.gz
   become: yes
 
 - name: Move arachni into lib directory
   unarchive:
-    src: /usr/lib/arachni-2.0dev-1.0dev-linux-x86_64.tar.gz
+    src: /vagrant/arachni-2.0dev-1.0dev-linux-x86_64.tar.gz
     dest: /usr/lib
     remote_src: yes
+  become: yes
+
+- name: Add arachni bin dir to system-wide $PATH
+  copy:
+    dest: /etc/profile.d/arachni.sh
+    content: 'PATH=$PATH:/usr/lib/arachni-2.0dev-1.0dev/bin/'
   become: yes

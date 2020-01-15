@@ -1,0 +1,31 @@
+- name: Get nodejs setup script
+  get_url: url=https://deb.nodesource.com/setup_13.x dest=/vagrant/nodejs-installer
+  become: yes
+
+- name: Setup nodejs
+  command: /bin/bash /vagrant/nodejs-installer
+  become: yes
+
+- name: Install nodejs
+  apt: pkg=nodejs
+  become: yes
+
+- name: Install htcap
+  git: repo=https://github.com/fcavallarin/htcap.git dest=/usr/lib/htcap
+  become: yes
+
+- name: Change file ownership, group and permissions
+  file:
+    path: /usr/lib/htcap
+    state: directory
+    recurse: yes
+    owner: vagrant
+    group: vagrant
+  become: yes
+
+- name: Add htcap to bin directory
+  file:
+    src: /usr/lib/htcap/htcap.py
+    dest: /usr/bin/htcap
+    state: link
+  become: yes
