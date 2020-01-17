@@ -1,0 +1,3 @@
+- name: Install dnsmap
+  apt: pkg=dnsmap
+  become: yes
