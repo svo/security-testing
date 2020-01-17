@@ -17,6 +17,10 @@
       apt: pkg=avahi-daemon
       become: yes
 
+    - name: Install ntpdate for time synchronisation
+      apt: pkg=ntpdate
+      become: yes
+
   roles:
     - arachni
     - htcap
