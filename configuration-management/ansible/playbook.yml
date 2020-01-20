@@ -27,3 +27,4 @@
     - slowhttptest
     - wapiti
     - dnsmap
+    - scrapy
