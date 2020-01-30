@@ -1,3 +1,23 @@
-- name: Install dnsmap
-  apt: pkg=dnsmap
+- name: Download dnsmap
+  get_url:
+    url: https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/dnsmap/dnsmap-0.30.tar.gz
+    dest: /vagrant/dnsmap-0.30.tar.gz
+  become: yes
+
+- name: Move dnsmap into lib directory
+  unarchive:
+    src: /vagrant/dnsmap-0.30.tar.gz
+    dest: /usr/lib
+    remote_src: yes
+  become: yes
+
+- name: Build dnsmap
+  shell:
+    cmd: gcc -Wall dnsmap.c -o dnsmap
+    chdir: /usr/lib/dnsmap-0.30/
+
+- name: Add dnsmap bin dir to system-wide $PATH
+  copy:
+    dest: /etc/profile.d/dnsmap.sh
+    content: 'PATH=$PATH:/usr/lib/dnsmap-0.30/'
   become: yes

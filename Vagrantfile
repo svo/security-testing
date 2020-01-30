@@ -4,7 +4,7 @@
 VAGRANTFILE_API_VERSION = '2'.freeze
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = 'kalilinux/rolling'
+  config.vm.box = 'bento/debian-9.5'
 
   config.vm.hostname = 'security-testing'
 
@@ -17,6 +17,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider :virtualbox do |vb|
     vb.cpus = 4
     vb.memory = 4096
-    vb.gui = true
   end
 end

@@ -10,6 +10,10 @@
   apt: pkg=nodejs
   become: yes
 
+- name: Install git
+  apt: pkg=git-core
+  become: yes
+
 - name: Install htcap
   git: repo=https://github.com/fcavallarin/htcap.git dest=/usr/lib/htcap
   become: yes

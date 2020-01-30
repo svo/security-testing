@@ -1,3 +1,7 @@
+- name: Install pip
+  apt: pkg=python3-pip
+  become: yes
+
 - name: Install scrapy
-  apt: pkg=python3-scrapy
+  pip: name=scrapy executable=pip3
   become: yes

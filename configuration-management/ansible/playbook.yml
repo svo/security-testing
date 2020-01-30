@@ -21,10 +21,16 @@
       apt: pkg=ntpdate
       become: yes
 
+    - name: Install unzip
+      apt: pkg=unzip
+      become: yes
+
   roles:
     - arachni
     - htcap
     - slowhttptest
     - wapiti
     - dnsmap
+    - dnsrecon
     - scrapy
+    - skipfish

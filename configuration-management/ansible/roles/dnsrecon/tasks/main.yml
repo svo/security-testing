@@ -1,0 +1,3 @@
+- name: Install dnsrecon for DNS enumeration
+  apt: pkg=dnsrecon
+  become: yes
