@@ -1,0 +1,3 @@
+- name: Install nmap for network discovery
+  apt: pkg=nmap
+  become: yes
