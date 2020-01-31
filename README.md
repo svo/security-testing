@@ -28,6 +28,12 @@ dnsmap <domain.com> -d 1 -w <dictionary> -r dnsmap-$(date +%F).log
 dnsrecon -d example.com -D <dictionary> -t std --xml $(pwd)/dnsrecon.xml
 ```
 
+#### Authentication
+
+```
+ncrack -p <port> --user <username> -P <dictionary> <xxx.xxx.xxx.xxx>
+```
+
 #### Port Scan
 
 ##### TCP

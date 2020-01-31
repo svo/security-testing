@@ -1,0 +1,3 @@
+- name: Install ncrack for network authentication cracking
+  apt: pkg=ncrack
+  become: yes

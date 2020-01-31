@@ -35,3 +35,4 @@
     - scrapy
     - skipfish
     - nmap
+    - ncrack
