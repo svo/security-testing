@@ -18,6 +18,10 @@
       apt: pkg=unzip
       become: yes
 
+    - name: Install lynx command line web browser
+      apt: pkg=lynx
+      become: yes
+
   roles:
     - arachni
     - htcap
@@ -33,3 +37,4 @@
     - apache-bench
     - dig
     - netstress
+    - mitmproxy

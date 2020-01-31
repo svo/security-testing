@@ -100,6 +100,12 @@ dig @<xxx.xxx.xxx.xxx> some.domain.com
 netstress -m -f <xxx.xxx.xxx.xxx>
 ```
 
+#### Man In The Middle
+
+```
+mitmproxy -R https://some.domain.com:<port>/
+```
+
 ### Security Reconnaissance
 
 #### Arachni

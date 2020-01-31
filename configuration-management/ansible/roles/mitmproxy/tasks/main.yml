@@ -1,0 +1,3 @@
+- name: Install mitmproxy for man-in-the-middle attacks
+  apt: pkg=mitmproxy
+  become: yes
