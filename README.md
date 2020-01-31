@@ -48,7 +48,7 @@ nmap -Pn -p- <xxx.xxx.xxx.xxx>
 nmap -Pn -sU -F <xxx.xxx.xxx.xxx>
 ```
 
-### DDOS
+### DOS
 
 #### Slowloris
 
