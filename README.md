@@ -86,6 +86,14 @@ sudo hping3 --flood --rand-source --udp -p <port> <xxx.xxx.xxx.xxx>
 ab -c 1000 -n 10000 http://xxx.xxx.xxx.xxx/
 ```
 
+#### DNS Flood
+
+##### DIG
+
+```
+dig @<xxx.xxx.xxx.xxx> some.domain.com
+```
+
 ### Security Reconnaissance
 
 #### Arachni

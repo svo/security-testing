@@ -38,3 +38,4 @@
     - ncrack
     - hping3
     - apache-bench
+    - dig

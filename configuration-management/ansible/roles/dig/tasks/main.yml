@@ -1,0 +1,3 @@
+- name: Install dig for DNS querying
+  apt: pkg=dnsutils
+  become: yes
