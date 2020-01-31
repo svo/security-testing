@@ -32,3 +32,4 @@
     - hping3
     - apache-bench
     - dig
+    - netstress

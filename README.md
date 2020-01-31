@@ -94,6 +94,12 @@ ab -c 1000 -n 10000 http://xxx.xxx.xxx.xxx/
 dig @<xxx.xxx.xxx.xxx> some.domain.com
 ```
 
+##### NetStress
+
+```
+netstress -m -f <xxx.xxx.xxx.xxx>
+```
+
 ### Security Reconnaissance
 
 #### Arachni
