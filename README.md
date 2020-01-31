@@ -80,6 +80,12 @@ sudo hping3 --flood --rand-source -F -p <port> <xxx.xxx.xxx.xxx>
 sudo hping3 --flood --rand-source --udp -p <port> <xxx.xxx.xxx.xxx>
 ```
 
+#### Apache Bench
+
+```
+ab -c 1000 -n 10000 http://xxx.xxx.xxx.xxx/
+```
+
 ### Security Reconnaissance
 
 #### Arachni

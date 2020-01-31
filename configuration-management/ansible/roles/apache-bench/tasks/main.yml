@@ -1,0 +1,3 @@
+- name: Install Apache Bench for HTTP benchmarking
+  apt: pkg=apache2-utils
+  become: yes
