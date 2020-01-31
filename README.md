@@ -16,8 +16,16 @@ This document is a high level introduction to some security testing tools that a
 
 #### Domain Name Discovery
 
+##### dnsmap
+
 ```
 dnsmap <domain.com> -d 1 -w <dictionary> -r dnsmap-$(date +%F).log
+```
+
+##### DNSRecon
+
+```
+dnsrecon -d example.com -D <dictionary> -t std --xml $(pwd)/dnsrecon.xml
 ```
 
 #### Port Scan
@@ -34,7 +42,7 @@ nmap -Pn -p- <xxx.xxx.xxx.xxx>
 nmap -Pn -sU -F <xxx.xxx.xxx.xxx>
 ```
 
-### DOS
+### DDOS
 
 #### Slowloris
 
