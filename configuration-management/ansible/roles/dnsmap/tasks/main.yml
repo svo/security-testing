@@ -1,4 +1,4 @@
-- name: Download dnsmap
+- name: Download dnsmap for DNS enumeration
   get_url:
     url: https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/dnsmap/dnsmap-0.30.tar.gz
     dest: /vagrant/dnsmap-0.30.tar.gz

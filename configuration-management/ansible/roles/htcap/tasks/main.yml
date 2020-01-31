@@ -14,7 +14,7 @@
   apt: pkg=git-core
   become: yes
 
-- name: Install htcap
+- name: Install htcap for single page application crawling
   git: repo=https://github.com/fcavallarin/htcap.git dest=/usr/lib/htcap
   become: yes
 

@@ -1,4 +1,4 @@
-- name: Download arachni
+- name: Download arachni for Web Application Security Scanning
   get_url:
     url: https://downloads.arachni-scanner.com/nightlies/arachni-2.0dev-1.0dev-linux-x86_64.tar.gz
     dest: /vagrant/arachni-2.0dev-1.0dev-linux-x86_64.tar.gz
