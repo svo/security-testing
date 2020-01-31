@@ -1,3 +1,79 @@
 # Security Testing
 
-This project provides a `Vagrant` profile for a `Debian` `Linux` setup for enacting some common penetration testing approaches.
+## Summary
+
+This document is a high level introduction to some security testing tools that are commonly available in the linux ecosystem.
+
+## Vagrant Environment
+
+1. [Ansible (2.4.3.0)](https://www.ansible.com/)
+2. [Vagrant (2.2.6)](https://www.vagrantup.com/)
+3. [VirtualBox (6.0.16 r135674)](https://www.virtualbox.org/)
+
+## Attack Vectors
+
+### Network
+
+#### Domain Name Discovery
+
+```
+dnsmap <domain.com> -d 1 -w <dictionary> -r dnsmap-$(date +%F).log
+```
+
+#### Port Scan
+
+##### TCP
+
+```
+nmap -Pn -p- <xxx.xxx.xxx.xxx>
+```
+
+##### UDP
+
+```
+nmap -Pn -sU -F <xxx.xxx.xxx.xxx>
+```
+
+### DOS
+
+#### Slowloris
+
+```
+slowhttptest -c 65539 -H -g -o $(date +%F) -i 10 -r 200 -t GET -u http://some.domain.com/ -x 24 -p 3
+```
+
+#### Slow Read
+
+```
+slowhttptest -g -o $(date +%F) -c 65539 -X -r 1000 -w 10 -y 20 -n 5 -z 32 -u http://some.domain.com/ -p 5 -l 350
+```
+
+### Security Reconnaissance
+
+#### Arachni
+
+```
+sudo OPENSSL_CONF=/etc/ssl/ /usr/lib/arachni-2.0dev-1.0dev/bin/arachni "http://some.domain.com"  --report-save-path ./$(date +%F).afr --plugin=metrics
+```
+
+```
+sudo /usr/lib/arachni-2.0dev-1.0dev/bin/arachni_reporter --reporter=html:outfile=$(date +%F).html.zip ./$(date +%F).afr
+```
+
+#### Skipfish
+
+```
+skipfish -o $(date +%F).log http://some.domain.com
+```
+
+#### HTCAP
+
+```
+htcap crawl -v 'http://some.domain.com/' $(date +%F).db
+```
+
+#### Wapiti
+
+```
+wapiti 'http://some.domain.com/'  --output  $(date +%F)
+```
