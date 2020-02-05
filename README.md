@@ -10,7 +10,14 @@ This document is a high level introduction to some security testing tools that a
 2. [Vagrant (2.2.6)](https://www.vagrantup.com/)
 3. [VirtualBox (6.0.16 r135674)](https://www.virtualbox.org/)
 
+### Running
+
+1. `vagrant up`
+2. `vagrant ssh`
+
 ## Attack Vectors
+
+In the following examples `10.6.6.7` and `security-testing-victim.local` refer to the "victim" Virtual Machine in the provided `Vagrant` profile.
 
 ### Network
 
@@ -40,6 +47,12 @@ ncrack -p <port> --user <username> -P <dictionary> <xxx.xxx.xxx.xxx>
 
 ```
 nmap -Pn -p- <xxx.xxx.xxx.xxx>
+```
+
+e.g.
+
+```
+nmap -Pn -p- 10.6.6.7
 ```
 
 ##### UDP
