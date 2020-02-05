@@ -58,7 +58,13 @@ nmap -Pn -p- 10.6.6.7
 ##### UDP
 
 ```
-nmap -Pn -sU -F <xxx.xxx.xxx.xxx>
+sudo nmap -Pn -sU -F <xxx.xxx.xxx.xxx>
+```
+
+e.g.
+
+```
+sudo nmap -Pn -sU -F 10.6.6.7
 ```
 
 ### DOS
