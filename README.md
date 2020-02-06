@@ -17,8 +17,6 @@ This document is a high level introduction to some security testing tools that a
 
 ## Attack Vectors
 
-In the following examples `10.6.6.7` and `security-testing-victim.local` refer to the "victim" Virtual Machine in the provided `Vagrant` profile.
-
 ### Network
 
 #### Domain Name Discovery
@@ -131,12 +129,6 @@ mitmproxy -R https://some.domain.com:<port>/
 
 ```
 sudo OPENSSL_CONF=/etc/ssl/ /usr/lib/arachni-2.0dev-1.0dev/bin/arachni "http://some.domain.com" --report-save-path ./$(date +%F).afr --plugin=metrics
-```
-
-e.g.
-
-```
-sudo OPENSSL_CONF=/etc/ssl/ /usr/lib/arachni-2.0dev-1.0dev/bin/arachni "http://security-testing-victim.local:3000" --report-save-path ./$(date +%F).afr --plugin=metrics
 ```
 
 ##### Generate Report
