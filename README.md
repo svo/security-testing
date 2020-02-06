@@ -47,22 +47,10 @@ ncrack -p <port> --user <username> -P <dictionary> <xxx.xxx.xxx.xxx>
 nmap -Pn -p- <xxx.xxx.xxx.xxx>
 ```
 
-e.g.
-
-```
-nmap -Pn -p- 10.6.6.7
-```
-
 ##### UDP
 
 ```
 sudo nmap -Pn -sU -F <xxx.xxx.xxx.xxx>
-```
-
-e.g.
-
-```
-sudo nmap -Pn -sU -F 10.6.6.7
 ```
 
 ### DOS
