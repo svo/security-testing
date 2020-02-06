@@ -13,3 +13,28 @@
     - name: Install ntpdate for time synchronisation
       apt: pkg=ntpdate
       become: yes
+
+    - name: Install pip
+      apt: pkg=python-pip
+      become: yes
+
+    - name: Install docker-py
+      pip: name=docker-py
+      become: yes
+
+  roles:
+    - docker
+
+  post_tasks:
+    - name: Add vagrant user to user groups
+      user: name=vagrant groups=docker append=yes
+      become: yes
+
+    - name: data container
+      docker:
+        name: juice-shop
+        image: bkimminich/juice-shop
+        ports:
+          - "3000:3000"
+        restart_policy: always
+      become: yes
