@@ -130,13 +130,13 @@ mitmproxy -R https://some.domain.com:<port>/
 #### Arachni
 
 ```
-sudo OPENSSL_CONF=/etc/ssl/ /usr/lib/arachni-2.0dev-1.0dev/bin/arachni "http://some.domain.com"  --report-save-path ./$(date +%F).afr --plugin=metrics
+sudo OPENSSL_CONF=/etc/ssl/ /usr/lib/arachni-2.0dev-1.0dev/bin/arachni "http://some.domain.com" --report-save-path ./$(date +%F).afr --plugin=metrics
 ```
 
 e.g.
 
 ```
-sudo OPENSSL_CONF=/etc/ssl/ /usr/lib/arachni-2.0dev-1.0dev/bin/arachni "http://security-testing-victim.local:3000"  --report-save-path ./$(date +%F).afr --plugin=metrics
+sudo OPENSSL_CONF=/etc/ssl/ /usr/lib/arachni-2.0dev-1.0dev/bin/arachni "http://security-testing-victim.local:3000" --report-save-path ./$(date +%F).afr --plugin=metrics
 ```
 
 ##### Generate Report
@@ -160,5 +160,5 @@ htcap crawl -v 'http://some.domain.com/' $(date +%F).db
 #### Wapiti
 
 ```
-wapiti 'http://some.domain.com/'  --output  $(date +%F)
+wapiti 'http://some.domain.com/' --output $(date +%F)
 ```
