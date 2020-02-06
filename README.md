@@ -149,6 +149,12 @@ skipfish -o $(date +%F).log http://some.domain.com
 htcap crawl -v 'http://some.domain.com/' $(date +%F).db
 ```
 
+##### Generate Report
+
+```
+htcap util report ./$(date +%F).db ./$(date +%F).html
+```
+
 #### Wapiti
 
 ```
