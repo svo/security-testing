@@ -30,7 +30,7 @@
       user: name=vagrant groups=docker append=yes
       become: yes
 
-    - name: data container
+    - name: Juice Shop
       docker:
         name: juice-shop
         image: bkimminich/juice-shop
