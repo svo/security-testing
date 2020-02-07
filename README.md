@@ -6,7 +6,7 @@ This document is a high level introduction to some security testing tools that a
 
 ## Vagrant Environment
 
-1. [Ansible (2.4.3.0)](https://www.ansible.com/)
+1. [Ansible (2.9.4)](https://www.ansible.com/)
 2. [Vagrant (2.2.6)](https://www.vagrantup.com/)
 3. [VirtualBox (6.0.16 r135674)](https://www.virtualbox.org/)
 

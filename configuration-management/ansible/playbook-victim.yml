@@ -31,10 +31,36 @@
       become: yes
 
     - name: Juice Shop
-      docker:
+      docker_container:
         name: juice-shop
         image: bkimminich/juice-shop
         ports:
-          - "3000:3000"
+          - 3000:3000
         restart_policy: always
-      become: yes
+
+    - name: Create dnsmasq configuration
+      copy:
+        dest: /opt/dnsmasq.conf
+        content: |
+          log-queries
+          no-resolv
+          server=1.0.0.1
+          server=1.1.1.1
+          strict-order
+          server=/security/10.6.6.7
+          address=/tooling.security/10.6.6.6
+          address=/victim.security/10.6.6.7
+
+    - name: dnsmasq
+      docker_container:
+        name: dnsmasq
+        image: jpillora/dnsmasq
+        ports:
+          - 8080:8080
+          - 53:53/udp
+        env:
+          HTTP_USER: "admin"
+          HTTP_PASS: "admin123"
+        volumes:
+          - /opt/dnsmasq.conf:/etc/dnsmasq.conf
+        restart_policy: always
