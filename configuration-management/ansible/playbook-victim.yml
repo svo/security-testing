@@ -37,6 +37,7 @@
         ports:
           - 3000:3000
         restart_policy: always
+      become: yes
 
     - name: Create dnsmasq configuration
       copy:
@@ -50,6 +51,7 @@
           server=/security/10.6.6.7
           address=/tooling.security/10.6.6.6
           address=/victim.security/10.6.6.7
+      become: yes
 
     - name: dnsmasq
       docker_container:
@@ -64,3 +66,4 @@
         volumes:
           - /opt/dnsmasq.conf:/etc/dnsmasq.conf
         restart_policy: always
+      become: yes

@@ -1,10 +1,6 @@
 - name: Install required packages
-  apt: name={{ item }} update_cache=yes
+  apt: name=apt-transport-https,ca-certificates,curl update_cache=yes
   become: yes
-  with_items:
-  - apt-transport-https
-  - ca-certificates
-  - curl
 
 - name: Add docker apt key
   apt_key: url=https://download.docker.com/linux/debian/gpg
