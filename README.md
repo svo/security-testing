@@ -15,6 +15,27 @@ This document is a high level introduction to some security testing tools that a
 1. `vagrant up`
 2. `vagrant ssh`
 
+### Victim
+
+Virtual Machine that can be addressed via hostname `security-testing-victim.local`.
+
+#### Services
+
+* Juice Shop
+  * http://security-testing-victim.local:3000/
+* WebGoat
+  * http://security-testing-victim.local:3001/WebGoat/
+* Hackazon
+  * HTTP: http://security-testing-victim.local:3002/
+  * HTTPS: https://security-testing-victim.local:3003/
+* WackoPicko
+  * http://security-testing-victim.local:3004/
+* DVWA
+  * http://security-testing-victim.local:3005/
+* dnsmasq
+  * 8080
+  * 53
+
 ## Attack Vectors
 
 ### Network

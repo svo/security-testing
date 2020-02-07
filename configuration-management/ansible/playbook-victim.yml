@@ -30,15 +30,6 @@
       user: name=vagrant groups=docker append=yes
       become: yes
 
-    - name: Juice Shop
-      docker_container:
-        name: juice-shop
-        image: bkimminich/juice-shop
-        ports:
-          - 3000:3000
-        restart_policy: always
-      become: yes
-
     - name: Create dnsmasq configuration
       copy:
         dest: /opt/dnsmasq.conf
@@ -68,11 +59,48 @@
         restart_policy: always
       become: yes
 
-    - name: web-dvwa
+    - name: Juice Shop
       docker_container:
-        name: web-dvwa
+        name: juice-shop
+        image: bkimminich/juice-shop
+        ports:
+          - 3000:3000
+        restart_policy: always
+      become: yes
+
+    - name: webgoat
+      docker_container:
+        name: webgoat
+        image: webgoat/webgoat-8.0
+        ports:
+          - 3001:8080
+        restart_policy: always
+      become: yes
+
+    - name: hackazon
+      docker_container:
+        name: hackazon
+        image: ianwijaya/hackazon
+        ports:
+          - 3002:80
+          - 3003:443
+        restart_policy: always
+      become: yes
+
+    - name: adamdoupe/wackopicko
+      docker_container:
+        name: wackopicko
+        image: adamdoupe/wackopicko
+        ports:
+          - 3004:80
+        restart_policy: always
+      become: yes
+
+    - name: dvwa
+      docker_container:
+        name: dvwa
         image: vulnerables/web-dvwa
         ports:
-          - 80:80
+          - 3005:80
         restart_policy: always
       become: yes

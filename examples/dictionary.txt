@@ -90,6 +90,7 @@ sysadmin
 sysbin
 syslog
 system_admin
+tooling
 trouble
 udadmin
 ultra
@@ -102,6 +103,7 @@ user
 uucp
 uucpadm
 vagrant
+victim
 web
 webmaster
 www
