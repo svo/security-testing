@@ -67,3 +67,12 @@
           - /opt/dnsmasq.conf:/etc/dnsmasq.conf
         restart_policy: always
       become: yes
+
+    - name: web-dvwa
+      docker_container:
+        name: web-dvwa
+        image: vulnerables/web-dvwa
+        ports:
+          - 80:80
+        restart_policy: always
+      become: yes
