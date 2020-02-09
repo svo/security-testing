@@ -11,6 +11,10 @@
     remote_src: yes
   become: yes
 
+- name: Change owner of system directory
+  file: path=/usr/lib/arachni-2.0dev-1.0dev/system owner=vagrant group=vagrant recurse=yes
+  become: yes
+
 - name: Add arachni bin dir to system-wide $PATH
   copy:
     dest: /etc/profile.d/arachni.sh
