@@ -71,7 +71,7 @@
     - name: webgoat
       docker_container:
         name: webgoat
-        image: webgoat/webgoat-8.0
+        image: webgoat/webgoat-7.1
         ports:
           - 3001:8080
         restart_policy: always
