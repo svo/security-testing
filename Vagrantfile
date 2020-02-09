@@ -4,19 +4,19 @@
 VAGRANTFILE_API_VERSION = '2'.freeze
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.define 'default', primary: true do |default|
-    default.vm.box = 'bento/debian-9.5'
+  config.vm.define 'tooling', primary: true do |tooling|
+    tooling.vm.box = 'bento/debian-9.5'
 
-    default.vm.hostname = 'security-testing'
-    default.vm.network :private_network, ip: '10.6.6.6'
+    tooling.vm.hostname = 'security-testing'
+    tooling.vm.network :private_network, ip: '10.6.6.6'
 
-    default.vm.provision 'ansible' do |ansible|
+    tooling.vm.provision 'ansible' do |ansible|
       ansible.playbook = 'configuration-management/ansible/playbook.yml'
     end
 
-    default.cache.scope = :machine if Vagrant.has_plugin?('vagrant-cachier')
+    tooling.cache.scope = :machine if Vagrant.has_plugin?('vagrant-cachier')
 
-    default.vm.provider :virtualbox do |vb|
+    tooling.vm.provider :virtualbox do |vb|
       vb.cpus = 4
       vb.memory = 4096
     end
