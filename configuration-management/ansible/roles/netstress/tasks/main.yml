@@ -1,3 +1,0 @@
-- name: Install netstress for network stress and benchmark testing
-  apt: pkg=netstress
-  become: yes

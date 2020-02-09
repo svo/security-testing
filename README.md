@@ -120,10 +120,10 @@ ab -c 1000 -n 10000 http://xxx.xxx.xxx.xxx/
 dig @<xxx.xxx.xxx.xxx> some.domain.com
 ```
 
-##### NetStress
+##### mz
 
 ```
-netstress -m -f <xxx.xxx.xxx.xxx>
+sudo /usr/sbin/mz -A rand -B <xxx.xxx.xxx.xxx> -t dns "q=<some.domain.com>" -c 10000000
 ```
 
 #### Man In The Middle
