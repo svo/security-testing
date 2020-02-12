@@ -49,4 +49,4 @@
       become: yes
 
     - name: Add resolv.conf update to .bashrc
-      lineinfile: dest=~/.bashrc line="sed -i 's/nameserver.*/nameserver 10.6.6.7/g' /etc/resolv.conf"
+      lineinfile: dest=~/.bashrc line="sudo sed -i 's/nameserver.*/nameserver 10.6.6.7/g' /etc/resolv.conf"
