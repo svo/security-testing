@@ -39,9 +39,10 @@
           server=1.0.0.1
           server=1.1.1.1
           strict-order
-          server=/security/10.6.6.7
-          address=/tooling.security/10.6.6.6
-          address=/victim.security/10.6.6.7
+          server=/security.com/10.6.6.7
+          address=/tooling.security.com/10.6.6.6
+          address=/victim.security.com/10.6.6.7
+          address=/admin.security.com/10.6.6.7
       become: yes
 
     - name: dnsmasq
@@ -104,3 +105,10 @@
           - 3005:80
         restart_policy: always
       become: yes
+
+    - name: Setup DNS nameserver
+      lineinfile: path=/etc/resolv.conf line="nameserver 10.6.6.7" regex="nameserver.*"
+      become: yes
+
+    - name: Add resolv.conf update to .bashrc
+      lineinfile: dest=~/.bashrc line="sudo sed -i 's/nameserver.*/nameserver 10.6.6.7/g' /etc/resolv.conf"
