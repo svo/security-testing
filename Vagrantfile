@@ -17,8 +17,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     tooling.cache.scope = :machine if Vagrant.has_plugin?('vagrant-cachier')
 
     tooling.vm.provider :virtualbox do |vb|
-      vb.cpus = 4
-      vb.memory = 4096
+      vb.cpus = 2
+      vb.memory = 1024
     end
   end
 
@@ -35,8 +35,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     victim.cache.scope = :machine if Vagrant.has_plugin?('vagrant-cachier')
 
     victim.vm.provider :virtualbox do |vb|
-      vb.cpus = 2
-      vb.memory = 1024
+      vb.cpus = 4
+      vb.memory = 4096
     end
   end
 end
