@@ -51,7 +51,7 @@ dnsmap <domain.com> -d 1 -w <dictionary> -r dnsmap-$(date +%F).log
 ##### DNSRecon
 
 ```
-dnsrecon -d example.com -D <dictionary> -t std --xml $(pwd)/dnsrecon.xml
+dnsrecon -d example.com -D <dictionary> -t brt --xml $(pwd)/dnsrecon.xml
 ```
 
 #### Authentication
