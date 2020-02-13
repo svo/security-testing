@@ -7,7 +7,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define 'tooling', primary: true do |tooling|
     tooling.vm.box = 'bento/debian-9.5'
 
-    tooling.vm.hostname = 'security-testing'
+    tooling.vm.hostname = 'security-testing-tooling'
     tooling.vm.network :private_network, ip: '10.6.6.6'
 
     tooling.vm.provision 'ansible' do |ansible|
