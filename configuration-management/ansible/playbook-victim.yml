@@ -36,7 +36,6 @@
         content: |
           log-queries
           no-resolv
-          dns-forward-max=10000
           server=1.0.0.1
           server=1.1.1.1
           strict-order
