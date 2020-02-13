@@ -10,6 +10,10 @@
       apt: pkg=avahi-daemon
       become: yes
 
+    - name: Install avahi-utils for working with MDNS
+      apt: pkg=avahi-utils
+      become: yes
+
     - name: Install ntpdate for time synchronisation
       apt: pkg=ntpdate
       become: yes
