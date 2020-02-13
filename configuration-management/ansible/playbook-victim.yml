@@ -36,6 +36,7 @@
         content: |
           log-queries
           no-resolv
+          dns-forward-max=10000
           server=1.0.0.1
           server=1.1.1.1
           strict-order
@@ -49,6 +50,7 @@
       docker_container:
         name: dnsmasq
         image: jpillora/dnsmasq
+        network_mode: host
         ports:
           - 8080:8080
           - 53:53/udp
