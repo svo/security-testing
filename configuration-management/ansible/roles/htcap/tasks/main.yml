@@ -1,5 +1,5 @@
 - name: Get nodejs setup script
-  get_url: url=https://deb.nodesource.com/setup_13.x dest=/vagrant/nodejs-installer
+  get_url: url=https://deb.nodesource.com/setup_13.x dest=/vagrant/nodejs-installer checksum="sha256:13b8764f37191334d4b1f264091abc3858f2051f5a292447eaf76cac5fe56076"
   become: yes
 
 - name: Setup nodejs

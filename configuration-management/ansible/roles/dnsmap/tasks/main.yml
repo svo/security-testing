@@ -2,6 +2,7 @@
   get_url:
     url: https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/dnsmap/dnsmap-0.30.tar.gz
     dest: /vagrant/dnsmap-0.30.tar.gz
+    checksum: sha256:fcf03a7b269b51121920ac49f7d450241306cfff23c76f3da94b03792f6becbc
   become: yes
 
 - name: Move dnsmap into lib directory

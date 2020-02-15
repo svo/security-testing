@@ -2,6 +2,7 @@
   get_url:
     url: https://downloads.arachni-scanner.com/nightlies/arachni-2.0dev-1.0dev-linux-x86_64.tar.gz
     dest: /vagrant/arachni-2.0dev-1.0dev-linux-x86_64.tar.gz
+    checksum: sha256:ac366356f9d9864176b30190a3b9e5bee7cdfe0ba18f3938b06eaf48008b0f7d
   become: yes
 
 - name: Move arachni into lib directory
