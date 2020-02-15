@@ -46,6 +46,7 @@
     - dig
     - mz
     - mitmproxy
+    - rainbowcrack
 
   post_tasks:
     - name: Setup DNS nameserver
