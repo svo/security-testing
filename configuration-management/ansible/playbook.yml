@@ -47,6 +47,7 @@
     - mz
     - mitmproxy
     - rainbowcrack
+    - theharvester
 
   post_tasks:
     - name: Setup DNS nameserver
