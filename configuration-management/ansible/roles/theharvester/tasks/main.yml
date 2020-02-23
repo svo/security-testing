@@ -1,29 +1,36 @@
-- name: Install theHarvester for e-mails, subdomains and names harvesting
-  get_url: url=https://github.com/laramies/theHarvester/archive/V3.1.tar.gz dest=/vagrant/theHarvester-V3.1.tar.gz
+- name: Get theHarvester for e-mails, subdomains and names harvesting
+  get_url: url=https://github.com/laramies/theHarvester/archive/master.zip dest=/vagrant/theHarvester-master.zip
   become: yes
 
-- name: Move theHarvester into lib directory
+- name: Unarchive
   unarchive:
-    src: /vagrant/theHarvester-V3.1.tar.gz
-    dest: /usr/lib
+    src: /vagrant/theHarvester-master.zip
+    dest: /etc
     remote_src: yes
   become: yes
 
 - name: Change file ownership, group and permissions
   file:
-    path: /usr/lib/theHarvester-V3.1.tar.gz
+    path: /etc/theHarvester-master
     state: directory
     recurse: yes
     owner: vagrant
     group: vagrant
   become: yes
 
+- name: Link /etc/theHarvester-master as /etc/theHarvester
+  file:
+    src: /etc/theHarvester-master
+    dest: /etc/theHarvester
+    state: link
+  become: yes
+
 - name: Add theHarvester to bin directory
   file:
-    src: /usr/lib/theHarvester-3.1/theHarvester.py
+    src: /etc/theHarvester/theHarvester.py
     dest: /usr/bin/theHarvester
     state: link
   become: yes
 
 - name: Install required python modules
-  pip: requirements=/usr/lib/theHarvester-3.1/requirements.txt executable=/usr/lib/pyenv/shims/pip3.8
+  pip: requirements=/etc/theHarvester-master/requirements/base.txt executable=/usr/lib/pyenv/shims/pip3.8
