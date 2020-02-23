@@ -1,7 +1,0 @@
-- name: Install pip
-  apt: pkg=python3-pip
-  become: yes
-
-- name: Install scrapy for extracting data from websites
-  pip: name=scrapy executable=pip3
-  become: yes

@@ -1,7 +1,0 @@
-- name: Install snapd
-  apt: pkg=snapd
-  become: yes
-
-- name: Install rainbowcrack
-  shell: snap install rainbowcrack --beta
-  become: yes

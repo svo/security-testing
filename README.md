@@ -28,10 +28,6 @@ Virtual Machine that can be addressed via hostname `security-testing-victim.loca
 * Hackazon
   * HTTP: http://security-testing-victim.local:3002/
   * HTTPS: https://security-testing-victim.local:3003/
-* WackoPicko
-  * http://security-testing-victim.local:3004/
-* DVWA
-  * http://security-testing-victim.local:3005/
 * dnsmasq
   * 8080
   * 53
@@ -117,13 +113,13 @@ ab -c 1000 -n 10000 http://xxx.xxx.xxx.xxx/
 ##### DIG
 
 ```
-dig @<xxx.xxx.xxx.xxx> some.domain.com
+dig @<xxx.xxx.xxx.xxx> domain.com
 ```
 
 ##### mz
 
 ```
-sudo /usr/sbin/mz -A rand -B <xxx.xxx.xxx.xxx> -t dns "q=<some.domain.com>" -c 10000000
+sudo /usr/sbin/mz -A rand -B <xxx.xxx.xxx.xxx> -t dns "q=<domain.com>" -c 10000000
 ```
 
 #### Man In The Middle

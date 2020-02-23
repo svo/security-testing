@@ -50,9 +50,6 @@
         name: dnsmasq
         image: jpillora/dnsmasq
         network_mode: host
-        ports:
-          - 8080:8080
-          - 53:53/udp
         env:
           HTTP_USER: "admin"
           HTTP_PASS: "admin123"
@@ -86,24 +83,6 @@
         ports:
           - 3002:80
           - 3003:443
-        restart_policy: always
-      become: yes
-
-    - name: adamdoupe/wackopicko
-      docker_container:
-        name: wackopicko
-        image: adamdoupe/wackopicko
-        ports:
-          - 3004:80
-        restart_policy: always
-      become: yes
-
-    - name: dvwa
-      docker_container:
-        name: dvwa
-        image: vulnerables/web-dvwa
-        ports:
-          - 3005:80
         restart_policy: always
       become: yes
 

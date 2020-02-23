@@ -46,7 +46,6 @@
     - dig
     - mz
     - mitmproxy
-    - rainbowcrack
     - theharvester
 
   post_tasks:
