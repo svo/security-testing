@@ -70,6 +70,12 @@ nmap -Pn -p- <xxx.xxx.xxx.xxx>
 sudo nmap -Pn -sU -F <xxx.xxx.xxx.xxx>
 ```
 
+#### IP Enumeration
+
+```
+nmap -sP <xxx.xxx.xxx.xxx/24>
+```
+
 ### DOS
 
 #### Slowloris
