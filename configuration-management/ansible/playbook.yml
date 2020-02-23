@@ -2,8 +2,8 @@
 - hosts: all
 
   pre_tasks:
-    - name: Update apt cache
-      apt: update_cache=yes
+    - name: Update apt cache and upgrade
+      apt: update_cache=yes upgrade=yes
       become: yes
 
     - name: Install avahi for MDNS
@@ -31,13 +31,13 @@
       become: yes
 
   roles:
+    - python
     - arachni
     - htcap
     - slowhttptest
     - wapiti
     - dnsmap
     - dnsrecon
-    - scrapy
     - skipfish
     - nmap
     - ncrack

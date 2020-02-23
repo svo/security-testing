@@ -1,13 +1,18 @@
-- name: Get nodejs setup script
-  get_url: url=https://deb.nodesource.com/setup_13.x dest=/vagrant/nodejs-installer checksum="sha256:13b8764f37191334d4b1f264091abc3858f2051f5a292447eaf76cac5fe56076"
+- name: Get nodejs
+  get_url: url=https://nodejs.org/dist/v12.16.1/node-v12.16.1-linux-x64.tar.xz dest=/vagrant/node-v12.16.1-linux-x64.tar.xz checksum="sha256:b826753f14df9771609ffb8e7d2cc4cb395247cb704cf0cea0f04132d9cf3505"
   become: yes
 
-- name: Setup nodejs
-  command: /bin/bash /vagrant/nodejs-installer
+- name: Move nodejs into lib directory
+  unarchive:
+    src: /vagrant/node-v12.16.1-linux-x64.tar.xz
+    dest: /usr/lib
+    remote_src: yes
   become: yes
 
-- name: Install nodejs
-  apt: pkg=nodejs
+- name: Add nodejs bin dir to system-wide $PATH
+  copy:
+    dest: /etc/profile.d/nodejs.sh
+    content: 'PATH=$PATH:/usr/lib/node-v12.16.1-linux-x64/bin/'
   become: yes
 
 - name: Install git

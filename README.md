@@ -132,6 +132,14 @@ sudo /usr/sbin/mz -A rand -B <xxx.xxx.xxx.xxx> -t dns "q=<some.domain.com>" -c 1
 mitmproxy -R https://some.domain.com:<port>/
 ```
 
+### Harvesting
+
+#### theHarvester
+
+```
+theHarvester -d domain.com -l 10000 -b all -f $(date +%F).html
+```
+
 ### Security Reconnaissance
 
 #### Arachni

@@ -1,0 +1,39 @@
+- name: Install build dependencies
+  apt: pkg=make,build-essential,libssl-dev,zlib1g-dev,libbz2-dev,libreadline-dev,libsqlite3-dev,wget,curl,llvm,libncurses5-dev,libncursesw5-dev,xz-utils,tk-dev,libffi-dev,liblzma-dev,python-openssl,git
+  become: yes
+
+- name: Install pyenv
+  git: repo=https://github.com/pyenv/pyenv.git dest=/usr/lib/pyenv
+  become: yes
+
+- name: Change file ownership, group and permissions
+  file:
+    path: /usr/lib/pyenv
+    state: directory
+    recurse: yes
+    owner: vagrant
+    group: vagrant
+  become: yes
+
+- name: Setup bash profile
+  blockinfile:
+    path: /etc/profile.d/pyenv.sh
+    create: yes
+    block: |
+      export PYENV_ROOT="/usr/lib/pyenv"
+      export PATH="$PYENV_ROOT/bin:$PATH"
+
+      if command -v pyenv 1>/dev/null 2>&1; then
+        eval "$(pyenv init -)"
+      fi
+  become: yes
+
+- name: Install python
+  shell: bash -lc "pyenv install 3.8.1"
+
+- name: Set python version as default
+  shell: bash -lc "pyenv global 3.8.1"
+
+- name: Upgrade pip
+  pip: name=pip state=latest extra_args=--upgrade executable=/usr/lib/pyenv/shims/pip3.8
+  become: yes
