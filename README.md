@@ -133,7 +133,7 @@ mitmproxy -R https://some.domain.com:<port>/
 #### theHarvester
 
 ```
-theHarvester -d domain.com -l 10000 -b all -f $(date +%F).html
+theHarvester -d domain.com -b all -f $(date +%F).html
 ```
 
 ### Security Reconnaissance
