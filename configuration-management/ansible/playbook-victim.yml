@@ -22,6 +22,26 @@
       pip: name=docker-py
       become: yes
 
+    - name: Install htop for process monitoring
+      apt: pkg=htop
+      become: yes
+
+    - name: Install smem for memory monitoring
+      apt: pkg=smem
+      become: yes
+
+    - name: Install iftop for network monitoring
+      apt: pkg=iftop
+      become: yes
+
+    - name: Install iotop for disk I/O monitoring
+      apt: pkg=iotop
+      become: yes
+
+    - name: Install nmon for general system performance monitoring
+      apt: pkg=nmon
+      become: yes
+
   roles:
     - docker
 
