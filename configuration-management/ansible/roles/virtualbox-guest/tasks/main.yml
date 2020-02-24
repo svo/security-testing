@@ -1,0 +1,11 @@
+- name: Install backports repository
+  apt_repository: repo='deb http://ftp.debian.org/debian {{ ansible_distribution_release }}-backports main contrib' state=present update_cache=yes
+  become: yes
+
+- name: Install virtualbox guest additions
+  apt: pkg=virtualbox-guest-dkms,linux-image-amd64,linux-headers-amd64
+  become: yes
+
+- name: Install backports repository
+  apt_repository: repo='deb http://ftp.debian.org/debian {{ ansible_distribution_release }}-backports main contrib' state=absent update_cache=yes
+  become: yes

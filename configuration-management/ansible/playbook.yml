@@ -3,7 +3,7 @@
 
   pre_tasks:
     - name: Update apt cache and upgrade
-      apt: update_cache=yes upgrade=yes
+      apt: update_cache=yes
       become: yes
 
     - name: Install avahi for MDNS
@@ -31,6 +31,7 @@
       become: yes
 
   roles:
+    - virtualbox-guest
     - python
     - arachni
     - htcap

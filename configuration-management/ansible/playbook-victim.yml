@@ -43,6 +43,7 @@
       become: yes
 
   roles:
+    - virtualbox-guest
     - docker
 
   post_tasks:
