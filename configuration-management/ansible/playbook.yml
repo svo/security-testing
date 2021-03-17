@@ -48,6 +48,7 @@
     - mz
     - mitmproxy
     - theharvester
+    - semgrep
 
   post_tasks:
     - name: Setup DNS nameserver
