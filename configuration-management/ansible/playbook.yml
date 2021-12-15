@@ -3,7 +3,13 @@
 
   pre_tasks:
     - name: Update apt cache and upgrade
-      apt: update_cache=yes
+      apt: pkg=dirmngr update_cache=yes
+      become: yes
+
+    - name: Add the repository key for stretch backports repository
+      apt_key:
+        keyserver: keyserver.ubuntu.com
+        id: 648ACFD622F3D138
       become: yes
 
     - name: Install avahi for MDNS
