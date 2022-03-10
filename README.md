@@ -128,7 +128,7 @@ dig @<xxx.xxx.xxx.xxx> domain.com
 sudo /usr/sbin/mz -A rand -B <xxx.xxx.xxx.xxx> -t dns "q=<domain.com>" -c 10000000
 ```
 
-#### Man In The Middle
+### Man In The Middle
 
 ```
 mitmproxy -R https://some.domain.com:<port>/
