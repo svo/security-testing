@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ab -c 1000 -n 10000 https://on.life:443/
+ab -c 1000 -n 10000 http://security-testing-victim.local:3000/
