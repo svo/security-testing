@@ -20,12 +20,12 @@ This document is a high level introduction to some security testing tools that a
 #### Services
 
 * Juice Shop
-  * http://172.17.0.1.local:3000/
+  * http://172.17.0.1:3000/
 * WebGoat
-  * http://172.17.0.1.local:3001/WebGoat/
+  * http://172.17.0.1:3001/WebGoat/
 * Hackazon
-  * HTTP: http://172.17.0.1.local:3002/
-  * HTTPS: https://172.17.0.1.local:3003/
+  * HTTP: http://172.17.0.1:3002/
+  * HTTPS: https://172.17.0.1:3003/
 * dnsmasq
   * 8080
   * 53
