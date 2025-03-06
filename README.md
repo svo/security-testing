@@ -12,22 +12,20 @@ This document is a high level introduction to some security testing tools that a
 
 ### Running
 
-1. `vagrant up`
+1. `vagrant up --no-parallel`
 2. `vagrant ssh`
 
 ### Victim
 
-Virtual Machine that can be addressed via hostname `security-testing-victim.local`.
-
 #### Services
 
 * Juice Shop
-  * http://security-testing-victim.local:3000/
+  * http://172.17.0.1.local:3000/
 * WebGoat
-  * http://security-testing-victim.local:3001/WebGoat/
+  * http://172.17.0.1.local:3001/WebGoat/
 * Hackazon
-  * HTTP: http://security-testing-victim.local:3002/
-  * HTTPS: https://security-testing-victim.local:3003/
+  * HTTP: http://172.17.0.1.local:3002/
+  * HTTPS: https://172.17.0.1.local:3003/
 * dnsmasq
   * 8080
   * 53
@@ -154,12 +152,6 @@ sudo OPENSSL_CONF=/etc/ssl/ /usr/lib/arachni-2.0dev-1.0dev/bin/arachni "http://s
 
 ```
 sudo /usr/lib/arachni-2.0dev-1.0dev/bin/arachni_reporter --reporter=html:outfile=$(date +%F).html.zip ./$(date +%F).afr
-```
-
-#### Skipfish
-
-```
-skipfish -o $(date +%F).log http://some.domain.com
 ```
 
 #### HTCAP

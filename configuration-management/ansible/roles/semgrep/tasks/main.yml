@@ -1,3 +1,0 @@
-- name: Install Semgrep static analysis for finding bugs
-  pip: name=semgrep state=latest extra_args=--upgrade executable=/usr/lib/pyenv/shims/pip3.8
-  become: yes

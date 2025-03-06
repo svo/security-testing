@@ -1,0 +1,23 @@
+- name: Install full python3
+  ansible.builtin.apt:
+    pkg: python3-full
+  become: true
+
+- name: Install pip3
+  ansible.builtin.apt:
+    pkg: python3-pip
+  become: true
+
+- name: Install python setuptools
+  ansible.builtin.apt:
+    pkg: python3-setuptools
+  become: true
+
+- name: Update ~/.profile
+  ansible.builtin.blockinfile:
+    create: true
+    path: ~/.profile
+    marker: "# {mark} PYTHON ANSIBLE MANAGED BLOCK"
+    mode: "0755"
+    block: |
+      export PATH=$PATH:$HOME/.local/bin

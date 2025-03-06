@@ -1,3 +1,0 @@
-- name: Install skipfish for Web Application Security Scanning
-  apt: pkg=skipfish
-  become: yes

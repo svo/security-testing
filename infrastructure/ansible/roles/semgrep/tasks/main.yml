@@ -1,0 +1,2 @@
+- name: Install Semgrep static analysis for finding bugs
+  command: pipx install semgrep

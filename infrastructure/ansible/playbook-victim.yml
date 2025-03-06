@@ -6,26 +6,8 @@
       apt: pkg=dirmngr update_cache=yes
       become: yes
 
-    - name: Add the repository key for stretch backports repository
-      apt_key:
-        keyserver: keyserver.ubuntu.com
-        id: 648ACFD622F3D138
-      become: yes
-
-    - name: Install avahi for MDNS
-      apt: pkg=avahi-daemon
-      become: yes
-
     - name: Install ntpdate for time synchronisation
       apt: pkg=ntpdate
-      become: yes
-
-    - name: Install pip
-      apt: pkg=python-pip
-      become: yes
-
-    - name: Install docker-py
-      pip: name=docker-py
       become: yes
 
     - name: Install htop for process monitoring
@@ -49,27 +31,12 @@
       become: yes
 
   roles:
-    - virtualbox-guest
+    - python
     - docker
 
   post_tasks:
     - name: Add vagrant user to user groups
       user: name=vagrant groups=docker append=yes
-      become: yes
-
-    - name: Create dnsmasq configuration
-      copy:
-        dest: /opt/dnsmasq.conf
-        content: |
-          log-queries
-          no-resolv
-          server=1.0.0.1
-          server=1.1.1.1
-          strict-order
-          server=/security.com/10.6.6.7
-          address=/tooling.security.com/10.6.6.6
-          address=/victim.security.com/10.6.6.7
-          address=/admin.security.com/10.6.6.7
       become: yes
 
     - name: dnsmasq
@@ -81,7 +48,7 @@
           HTTP_USER: "admin"
           HTTP_PASS: "admin123"
         volumes:
-          - /opt/dnsmasq.conf:/etc/dnsmasq.conf
+          - "{{ pwd }}/dnsmasq.conf:/etc/dnsmasq.conf"
         restart_policy: always
       become: yes
 
@@ -112,10 +79,3 @@
           - 3003:443
         restart_policy: always
       become: yes
-
-    - name: Setup DNS nameserver
-      lineinfile: path=/etc/resolv.conf line="nameserver 10.6.6.7" regex="nameserver.*"
-      become: yes
-
-    - name: Add resolv.conf update to .bashrc
-      lineinfile: dest=~/.bashrc line="sudo sed -i 's/nameserver.*/nameserver 10.6.6.7/g' /etc/resolv.conf"

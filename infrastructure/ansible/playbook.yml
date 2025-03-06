@@ -37,15 +37,14 @@
       become: yes
 
   roles:
-    - virtualbox-guest
     - python
+    - pipx
     - arachni
     - htcap
     - slowhttptest
     - wapiti
     - dnsmap
     - dnsrecon
-    - skipfish
     - nmap
     - ncrack
     - hping3
@@ -55,11 +54,3 @@
     - mitmproxy
     - theharvester
     - semgrep
-
-  post_tasks:
-    - name: Setup DNS nameserver
-      lineinfile: path=/etc/resolv.conf line="nameserver 10.6.6.7" regex="nameserver.*"
-      become: yes
-
-    - name: Add resolv.conf update to .bashrc
-      lineinfile: dest=~/.bashrc line="sudo sed -i 's/nameserver.*/nameserver 10.6.6.7/g' /etc/resolv.conf"

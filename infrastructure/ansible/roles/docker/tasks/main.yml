@@ -1,0 +1,38 @@
+- name: Install required packages
+  ansible.builtin.apt:
+    name: apt-transport-https,ca-certificates,curl,gnupg2
+  become: true
+
+- name: Add docker apt key
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
+  become: true
+
+- name: Install docker apt repository
+  ansible.builtin.apt_repository:
+    repo: |
+      deb [arch={{ [ansible_architecture] | map('extract', docker_deb_architecture) | first }}]
+      https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}
+      stable
+    state: present
+  become: true
+
+- name: Install docker
+  ansible.builtin.apt:
+    name: docker-ce
+    update_cache: true
+  become: true
+
+- name: Install docker python module
+  ansible.builtin.apt:
+    name: python3-docker
+  become: true
+
+- name: Update ~/.profile
+  ansible.builtin.blockinfile:
+    create: true
+    path: ~/.profile
+    marker: "# {mark} DOCKER ANSIBLE MANAGED BLOCK"
+    mode: "0755"
+    block: |
+      export DOCKER_DEFAULT_PLATFORM=linux/amd64

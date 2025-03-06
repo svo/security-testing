@@ -1,3 +1,3 @@
 #!/bin/bash
 
-mitmproxy -R 'http://security-testing-victim.local:3000/'
+mitmproxy -R 'https://on.life/'

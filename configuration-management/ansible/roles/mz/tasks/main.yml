@@ -1,3 +1,0 @@
-- name: Install mz for traffic generation
-  apt: pkg=mz
-  become: yes

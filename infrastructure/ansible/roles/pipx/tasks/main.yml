@@ -1,0 +1,9 @@
+- name: Install minimal python3
+  ansible.builtin.apt:
+    pkg: python3
+  become: true
+
+- name: Install pipx
+  ansible.builtin.apt:
+    pkg: pipx
+  become: true
