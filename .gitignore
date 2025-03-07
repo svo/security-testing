@@ -1,10 +1,9 @@
 *.swp
 *.retry
 
+.DS_Store
 .vagrant
 
-arachni.tar.gz
-arachni-2.0dev-1.0dev-linux-x86_64.tar.gz
 dnsmap-0.30.tar.gz
 node-v12.16.1-linux-x64.tar.xz
 theHarvester-master.zip

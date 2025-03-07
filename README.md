@@ -142,18 +142,6 @@ theHarvester -d domain.com -b all -f $(date +%F).html
 
 ### Security Reconnaissance
 
-#### Arachni
-
-```
-sudo OPENSSL_CONF=/etc/ssl/ /usr/lib/arachni-2.0dev-1.0dev/bin/arachni "http://some.domain.com" --report-save-path ./$(date +%F).afr --plugin=metrics
-```
-
-##### Generate Report
-
-```
-sudo /usr/lib/arachni-2.0dev-1.0dev/bin/arachni_reporter --reporter=html:outfile=$(date +%F).html.zip ./$(date +%F).afr
-```
-
 #### HTCAP
 
 ```

@@ -39,7 +39,6 @@
   roles:
     - python
     - pipx
-    - arachni
     - htcap
     - slowhttptest
     - wapiti
