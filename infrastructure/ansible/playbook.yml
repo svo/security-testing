@@ -12,14 +12,6 @@
         id: 648ACFD622F3D138
       become: yes
 
-    - name: Install avahi for MDNS
-      apt: pkg=avahi-daemon
-      become: yes
-
-    - name: Install avahi-utils for working with MDNS
-      apt: pkg=avahi-utils
-      become: yes
-
     - name: Install ntpdate for time synchronisation
       apt: pkg=ntpdate
       become: yes
