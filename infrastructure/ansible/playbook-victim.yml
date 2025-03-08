@@ -41,12 +41,11 @@
 
     - name: dnsmasq
       docker_container:
-        name: dnsmasq
-        image: jpillora/dnsmasq
-        network_mode: host
-        env:
-          HTTP_USER: "admin"
-          HTTP_PASS: "admin123"
+        name: security-testing-dnsmasq
+        image: dockurr/dnsmasq
+        networks:
+          - name: vagrant_network_10.6.6.0/24
+            ipv4_address: 10.6.6.8
         volumes:
           - "{{ pwd }}/dnsmasq.conf:/etc/dnsmasq.conf"
         restart_policy: always
@@ -54,8 +53,11 @@
 
     - name: Juice Shop
       docker_container:
-        name: juice-shop
+        name: security-testing-juice-shop
         image: bkimminich/juice-shop
+        networks:
+          - name: vagrant_network_10.6.6.0/24
+            ipv4_address: 10.6.6.9
         ports:
           - 3000:3000
         restart_policy: always
@@ -63,8 +65,11 @@
 
     - name: webgoat
       docker_container:
-        name: webgoat
+        name: security-testing-webgoat
         image: webgoat/webgoat-7.1
+        networks:
+          - name: vagrant_network_10.6.6.0/24
+            ipv4_address: 10.6.6.10
         ports:
           - 3001:8080
         restart_policy: always
@@ -72,8 +77,11 @@
 
     - name: hackazon
       docker_container:
-        name: hackazon
+        name: security-testing-hackazon
         image: ianwijaya/hackazon
+        networks:
+          - name: vagrant_network_10.6.6.0/24
+            ipv4_address: 10.6.6.11
         ports:
           - 3002:80
           - 3003:443

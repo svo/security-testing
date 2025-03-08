@@ -14,8 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       docker.volumes = [
         '/var/run/docker.sock:/var/run/docker.sock'
       ]
-      docker.create_args = ['--dns', '8.8.8.8', '--dns', '10.6.6.7']
-      docker.privileged = true
+      docker.create_args = ['--dns', '10.6.6.8', '--dns', '8.8.8.8']
     end
 
     tooling.vm.hostname = 'security-testing-tooling'
@@ -37,8 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       docker.volumes = [
         '/var/run/docker.sock:/var/run/docker.sock'
       ]
-      docker.create_args = ['--dns', '8.8.8.8', '--dns', '10.6.6.7']
-      docker.privileged = true
+      docker.create_args = ['--dns', '10.6.6.8', '--dns', '8.8.8.8']
     end
 
     victim.vm.hostname = 'security-testing-victim'
