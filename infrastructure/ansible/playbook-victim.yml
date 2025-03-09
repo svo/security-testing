@@ -66,7 +66,7 @@
     - name: webgoat
       docker_container:
         name: security-testing-webgoat
-        image: webgoat/webgoat-7.1
+        image: webgoat/webgoat
         networks:
           - name: vagrant_network_10.6.6.0/24
             ipv4_address: 10.6.6.10
