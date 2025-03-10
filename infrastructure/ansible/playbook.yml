@@ -18,14 +18,9 @@
       apt: pkg=time
       become: yes
 
-    - name: Install lynx command line web browser
-      apt: pkg=lynx
-      become: yes
-
   roles:
     - python
     - pipx
-    - htcap
     - slowhttptest
     - wapiti
     - dnsmap
