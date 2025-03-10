@@ -1,0 +1,22 @@
+- name: Determine architecture
+  ansible.builtin.set_fact:
+    architecture: "{{ 'amd64' if ansible_architecture == 'x86_64' else 'arm64' }}"
+
+- name: Download Browsh .deb package
+  ansible.builtin.get_url:
+    url: "https://github.com/browsh-org/browsh/releases/download/v1.8.0/browsh_1.8.0_linux_{{ architecture }}.deb"
+    dest: "/vagrant/browsh_1.8.0_linux_{{ architecture }}.deb"
+    mode: '0644'
+
+- name: Install Browsh package
+  ansible.builtin.apt:
+    deb: "/vagrant/browsh_1.8.0_linux_{{ architecture }}.deb"
+    state: present
+  register: apt_install
+  become: yes
+
+- name: Remove downloaded .deb package
+  ansible.builtin.file:
+    path: "/vagrant/browsh_1.8.0_linux_{{ architecture }}.deb"
+    state: absent
+  when: apt_install.changed

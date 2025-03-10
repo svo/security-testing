@@ -33,6 +33,7 @@
   roles:
     - python
     - docker
+    - browsh
 
   post_tasks:
     - name: Add vagrant user to user groups

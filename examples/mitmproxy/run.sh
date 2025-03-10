@@ -1,3 +1,3 @@
 #!/bin/bash
 
-mitmproxy -R 'http://security-testing-victim.local:3000/'
+mitmproxy --mode reverse:http://juice-shop.security.com:3000/
