@@ -65,7 +65,11 @@
           - name: vagrant_network_10.6.6.0/24
             ipv4_address: 10.6.6.9
         ports:
-          - 3000:3000
+          - "3000:3000"
+        memory: "256m"
+        cpu_shares: 50
+        ulimits:
+          - nofile:1024:2048
         restart_policy: always
       become: yes
 
