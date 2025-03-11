@@ -30,9 +30,14 @@
       apt: pkg=nmon
       become: yes
 
+    - name: Install time
+      apt: pkg=time
+      become: yes
+
   roles:
     - python
     - docker
+    - dig
     - browsh
 
   post_tasks:
