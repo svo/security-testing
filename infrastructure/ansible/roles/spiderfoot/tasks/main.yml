@@ -1,0 +1,33 @@
+- name: Clone SpiderFoot repository
+  git:
+    repo: "https://github.com/smicallef/spiderfoot.git"
+    dest: "/opt/spiderfoot"
+    version: master
+    force: yes
+  become: yes
+
+- name: Create Python virtual environment
+  command: python3 -m venv /opt/spiderfoot/venv
+  args:
+    creates: "/opt/spiderfoot/venv/bin/activate"
+  become: yes
+
+- name: Upgrade pip in virtual environment
+  command: "/opt/spiderfoot/venv/bin/pip install --upgrade pip"
+  become: yes
+
+- name: Install SpiderFoot requirements
+  command: "/opt/spiderfoot/venv/bin/pip install -r /opt/spiderfoot/requirements.txt"
+  args:
+    chdir: "/opt/spiderfoot"
+  become: yes
+
+- name: Create a SpiderFoot launcher script
+  copy:
+    dest: /usr/local/bin/spiderfoot
+    mode: '0755'
+    content: |
+      #!/bin/bash
+      cd /opt/spiderfoot
+      exec /opt/spiderfoot/venv/bin/python3 sf.py "$@"
+  become: yes

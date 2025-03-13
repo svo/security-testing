@@ -1,3 +1,3 @@
 #!/bin/bash
 
-wapiti 'http://security-testing-victim.local:3000' --output report
+wapiti -u 'http://10.6.6.9:3000' -f html -o report.html

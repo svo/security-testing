@@ -134,10 +134,10 @@ mitmproxy -R https://some.domain.com:<port>/
 
 ### Harvesting
 
-#### theHarvester
+#### SpiderFoot
 
 ```
-theHarvester -d domain.com -b all -f $(date +%F).html
+spiderfoot -s domain.com -m all -o report.html
 ```
 
 ### Security Reconnaissance

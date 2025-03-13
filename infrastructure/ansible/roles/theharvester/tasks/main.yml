@@ -1,2 +1,0 @@
-- name: Install TheHarvester
-  command: pipx install git+https://github.com/laramies/theHarvester.git

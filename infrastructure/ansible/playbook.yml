@@ -32,6 +32,6 @@
     - dig
     - mz
     - mitmproxy
-    - theharvester
+    - spiderfoot
     - semgrep
     - browsh
