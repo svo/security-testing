@@ -1,0 +1,67 @@
+- name: Ensure required packages for ZAP installation
+  ansible.builtin.apt:
+    name:
+      - curl
+      - unzip
+      - default-jre
+    state: present
+    update_cache: yes
+  become: true
+
+- name: Download ZAP Linux installer
+  ansible.builtin.get_url:
+    url: https://github.com/zaproxy/zaproxy/releases/download/v2.16.1/ZAP_2_16_1_unix.sh
+    dest: /vagrant/ZAP_installer.sh
+    mode: '0755'
+
+- name: Create ZAP installation directory
+  ansible.builtin.file:
+    path: /opt/zaproxy
+    state: directory
+    mode: '0755'
+  become: true
+
+- name: Install ZAP
+  ansible.builtin.shell: /vagrant/ZAP_installer.sh -q -dir /opt/zaproxy
+  args:
+    creates: /opt/zaproxy/zap.sh
+  become: true
+
+- name: Create symbolic link for ZAP
+  ansible.builtin.file:
+    src: /opt/zaproxy/zap.sh
+    dest: /usr/local/bin/zap.sh
+    state: link
+  become: true
+
+- name: Install ZAP CLI for Web Application Security Scanning
+  ansible.builtin.pip:
+    name: zapcli
+    executable: pipx
+
+- name: Create ZAP data directory
+  ansible.builtin.file:
+    path: /opt/zaproxy/data
+    state: directory
+    mode: '0755'
+  become: true
+
+- name: Create ZAP startup script
+  ansible.builtin.template:
+    src: zap-daemon.sh.j2
+    dest: /usr/local/bin/zap-daemon.sh
+    mode: '0755'
+  become: true
+
+- name: Add ZAP startup to /etc/rc.local
+  ansible.builtin.lineinfile:
+    path: /etc/rc.local
+    line: "/usr/local/bin/zap-daemon.sh > /var/log/zap-daemon.log 2>&1 &"
+    insertbefore: "exit 0"
+    create: yes
+    mode: '0755'
+  become: true
+
+- name: Execute ZAP daemon script
+  ansible.builtin.shell: /usr/local/bin/zap-daemon.sh > /var/log/zap-daemon.log 2>&1 &
+  become: true

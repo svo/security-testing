@@ -159,3 +159,10 @@ htcap util report ./$(date +%F).db ./$(date +%F).html
 ```
 wapiti 'http://some.domain.com/' --output $(date +%F)
 ```
+
+#### ZAP
+
+```
+zap-cli --verbose quick-scan -s xss,sqli --spider -r http://some.domain.com/
+zap-cli report -o report/juice-shop-report.html -f html
+```
