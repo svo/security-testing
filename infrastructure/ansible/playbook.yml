@@ -1,22 +1,31 @@
 ---
-- hosts: all
+- name: Setup Security Testing Tools
+  hosts: all
 
   pre_tasks:
     - name: Update apt cache and upgrade
-      apt: pkg=dirmngr update_cache=yes
-      become: yes
+      ansible.builtin.apt:
+        pkg: dirmngr
+        update_cache: true
+      become: true
 
     - name: Install ntpdate for time synchronisation
-      apt: pkg=ntpdate
-      become: yes
+      ansible.builtin.apt:
+        name: ntpdate
+        state: present
+      become: true
 
     - name: Install unzip
-      apt: pkg=unzip
-      become: yes
+      ansible.builtin.apt:
+        name: unzip
+        state: present
+      become: true
 
     - name: Install time
-      apt: pkg=time
-      become: yes
+      ansible.builtin.apt:
+        name: time
+        state: present
+      become: true
 
   roles:
     - python

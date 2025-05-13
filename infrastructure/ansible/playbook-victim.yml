@@ -1,38 +1,55 @@
 ---
-- hosts: all
+- name: Setup Victim Services
+  hosts: all
 
   pre_tasks:
     - name: Update apt cache and upgrade
-      apt: pkg=dirmngr update_cache=yes
-      become: yes
+      ansible.builtin.apt:
+        pkg: dirmngr
+        update_cache: true
+      become: true
 
     - name: Install ntpdate for time synchronisation
-      apt: pkg=ntpdate
-      become: yes
+      ansible.builtin.apt:
+        name: ntpdate
+        state: present
+      become: true
 
     - name: Install htop for process monitoring
-      apt: pkg=htop
-      become: yes
+      ansible.builtin.apt:
+        name: htop
+        state: present
+      become: true
 
     - name: Install smem for memory monitoring
-      apt: pkg=smem
-      become: yes
+      ansible.builtin.apt:
+        name: smem
+        state: present
+      become: true
 
     - name: Install iftop for network monitoring
-      apt: pkg=iftop
-      become: yes
+      ansible.builtin.apt:
+        name: iftop
+        state: present
+      become: true
 
     - name: Install iotop for disk I/O monitoring
-      apt: pkg=iotop
-      become: yes
+      ansible.builtin.apt:
+        name: iotop
+        state: present
+      become: true
 
     - name: Install nmon for general system performance monitoring
-      apt: pkg=nmon
-      become: yes
+      ansible.builtin.apt:
+        name: nmon
+        state: present
+      become: true
 
     - name: Install time
-      apt: pkg=time
-      become: yes
+      ansible.builtin.apt:
+        name: time
+        state: present
+      become: true
 
   roles:
     - python
@@ -42,11 +59,14 @@
 
   post_tasks:
     - name: Add vagrant user to user groups
-      user: name=vagrant groups=docker append=yes
-      become: yes
+      ansible.builtin.user:
+        name: vagrant
+        groups: docker
+        append: true
+      become: true
 
-    - name: dnsmasq
-      docker_container:
+    - name: Dnsmasq
+      community.docker.docker_container:
         name: security-testing-dnsmasq
         image: dockurr/dnsmasq
         networks:
@@ -55,10 +75,10 @@
         volumes:
           - "{{ pwd }}/dnsmasq.conf:/etc/dnsmasq.conf"
         restart_policy: always
-      become: yes
+      become: true
 
     - name: Juice Shop
-      docker_container:
+      community.docker.docker_container:
         name: security-testing-juice-shop
         image: bkimminich/juice-shop
         networks:
@@ -71,10 +91,10 @@
         ulimits:
           - nofile:1024:2048
         restart_policy: always
-      become: yes
+      become: true
 
-    - name: webgoat
-      docker_container:
+    - name: Webgoat
+      community.docker.docker_container:
         name: security-testing-webgoat
         image: webgoat/webgoat
         networks:
@@ -83,10 +103,10 @@
         ports:
           - 3001:8080
         restart_policy: always
-      become: yes
+      become: true
 
-    - name: hackazon
-      docker_container:
+    - name: Hackazon
+      community.docker.docker_container:
         name: security-testing-hackazon
         image: ianwijaya/hackazon
         networks:
@@ -96,4 +116,4 @@
           - 3002:80
           - 3003:443
         restart_policy: always
-      become: yes
+      become: true

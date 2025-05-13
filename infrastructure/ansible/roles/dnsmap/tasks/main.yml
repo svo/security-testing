@@ -1,24 +1,27 @@
 - name: Download dnsmap for DNS enumeration
-  get_url:
+  ansible.builtin.get_url:
     url: https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/dnsmap/dnsmap-0.30.tar.gz
     dest: /vagrant/dnsmap-0.30.tar.gz
     checksum: sha256:fcf03a7b269b51121920ac49f7d450241306cfff23c76f3da94b03792f6becbc
-  become: yes
+    mode: '0644'
+  become: true
 
 - name: Move dnsmap into lib directory
-  unarchive:
+  ansible.builtin.unarchive:
     src: /vagrant/dnsmap-0.30.tar.gz
     dest: /usr/lib
-    remote_src: yes
-  become: yes
+    remote_src: true
+  become: true
 
 - name: Build dnsmap
-  shell:
+  ansible.builtin.command:
     cmd: gcc -Wall dnsmap.c -o dnsmap
     chdir: /usr/lib/dnsmap-0.30/
+  changed_when: false
 
 - name: Add dnsmap bin dir to system-wide $PATH
-  copy:
+  ansible.builtin.copy:
     dest: /etc/profile.d/dnsmap.sh
     content: 'PATH=$PATH:/usr/lib/dnsmap-0.30/'
-  become: yes
+    mode: '0644'
+  become: true

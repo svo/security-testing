@@ -1,3 +1,5 @@
 - name: Install dig for DNS querying
-  apt: pkg=dnsutils
-  become: yes
+  ansible.builtin.apt:
+    name: dnsutils
+    state: present
+  become: true

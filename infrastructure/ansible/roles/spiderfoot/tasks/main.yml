@@ -1,33 +1,40 @@
 - name: Clone SpiderFoot repository
-  git:
+  ansible.builtin.git:
     repo: "https://github.com/smicallef/spiderfoot.git"
     dest: "/opt/spiderfoot"
     version: master
-    force: yes
-  become: yes
+    force: true
+  become: true
 
 - name: Create Python virtual environment
-  command: python3 -m venv /opt/spiderfoot/venv
+  ansible.builtin.command: python3 -m venv /opt/spiderfoot/venv
   args:
     creates: "/opt/spiderfoot/venv/bin/activate"
-  become: yes
+  become: true
+  changed_when: false
 
 - name: Upgrade pip in virtual environment
-  command: "/opt/spiderfoot/venv/bin/pip install --upgrade pip"
-  become: yes
+  ansible.builtin.command: "/opt/spiderfoot/venv/bin/pip install --upgrade pip"
+  become: true
+  changed_when: false
+  register: pip_upgrade
+  failed_when: pip_upgrade.rc != 0
 
 - name: Install SpiderFoot requirements
-  command: "/opt/spiderfoot/venv/bin/pip install -r /opt/spiderfoot/requirements.txt"
+  ansible.builtin.command: "/opt/spiderfoot/venv/bin/pip install -r /opt/spiderfoot/requirements.txt"
   args:
     chdir: "/opt/spiderfoot"
-  become: yes
+  become: true
+  changed_when: false
+  register: pip_install
+  failed_when: pip_install.rc != 0
 
 - name: Create a SpiderFoot launcher script
-  copy:
+  ansible.builtin.copy:
     dest: /usr/local/bin/spiderfoot
     mode: '0755'
     content: |
       #!/bin/bash
       cd /opt/spiderfoot
       exec /opt/spiderfoot/venv/bin/python3 sf.py "$@"
-  become: yes
+  become: true

@@ -1,3 +1,5 @@
 - name: Install wapiti for Web Application Security Scanning
-  apt: pkg=wapiti
-  become: yes
+  ansible.builtin.apt:
+    name: wapiti
+    state: present
+  become: true

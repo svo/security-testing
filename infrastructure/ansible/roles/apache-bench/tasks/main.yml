@@ -1,3 +1,5 @@
 - name: Install Apache Bench for HTTP benchmarking
-  apt: pkg=apache2-utils
-  become: yes
+  ansible.builtin.apt:
+    name: apache2-utils
+    state: present
+  become: true

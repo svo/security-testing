@@ -1,3 +1,4 @@
 - name: Install slowhttptest to simulate Denial of Service attack
-  apt: pkg=slowhttptest
-  become: yes
+  ansible.builtin.apt:
+    pkg: slowhttptest
+  become: true

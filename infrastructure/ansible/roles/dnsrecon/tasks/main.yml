@@ -1,3 +1,5 @@
 - name: Install dnsrecon for DNS enumeration
-  apt: pkg=dnsrecon
-  become: yes
+  ansible.builtin.apt:
+    name: dnsrecon
+    state: present
+  become: true

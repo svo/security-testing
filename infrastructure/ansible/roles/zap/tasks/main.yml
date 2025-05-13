@@ -5,7 +5,7 @@
       - unzip
       - default-jre
     state: present
-    update_cache: yes
+    update_cache: true
   become: true
 
 - name: Download ZAP Linux installer
@@ -22,10 +22,11 @@
   become: true
 
 - name: Install ZAP
-  ansible.builtin.shell: /vagrant/ZAP_installer.sh -q -dir /opt/zaproxy
+  ansible.builtin.command: /vagrant/ZAP_installer.sh -q -dir /opt/zaproxy
   args:
     creates: /opt/zaproxy/zap.sh
   become: true
+  changed_when: false
 
 - name: Create symbolic link for ZAP
   ansible.builtin.file:
@@ -58,10 +59,15 @@
     path: /etc/rc.local
     line: "/usr/local/bin/zap-daemon.sh > /var/log/zap-daemon.log 2>&1 &"
     insertbefore: "exit 0"
-    create: yes
+    create: true
     mode: '0755'
   become: true
 
 - name: Execute ZAP daemon script
-  ansible.builtin.shell: /usr/local/bin/zap-daemon.sh > /var/log/zap-daemon.log 2>&1 &
+  ansible.builtin.command: /usr/local/bin/zap-daemon.sh
+  args:
+    creates: /var/log/zap-daemon.log
   become: true
+  changed_when: false
+  async: 60
+  poll: 0

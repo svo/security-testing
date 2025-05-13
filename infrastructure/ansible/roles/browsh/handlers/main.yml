@@ -1,0 +1,5 @@
+---
+- name: Remove downloaded .deb package
+  ansible.builtin.file:
+    path: "/vagrant/browsh_1.8.0_linux_{{ architecture }}.deb"
+    state: absent

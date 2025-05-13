@@ -1,3 +1,4 @@
 - name: Install netsniff-ng for traffic generation
-  apt: pkg=netsniff-ng
-  become: yes
+  ansible.builtin.apt:
+    pkg: netsniff-ng
+  become: true

@@ -1,3 +1,5 @@
 - name: Install hping3 for packet generating and analysing
-  apt: pkg=hping3
-  become: yes
+  ansible.builtin.apt:
+    name: hping3
+    state: present
+  become: true
