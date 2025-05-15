@@ -4,14 +4,13 @@
 
 - name: Download Browsh .deb package
   ansible.builtin.get_url:
-    url: "https://github.com/browsh-org/browsh/releases/download/v1.8.0/browsh_1.8.0_linux_{{ architecture }}.deb"
-    dest: "/vagrant/browsh_1.8.0_linux_{{ architecture }}.deb"
+    url: "https://github.com/browsh-org/browsh/releases/download/v1.8.2/browsh_1.8.2_linux_{{ architecture }}.deb"
+    dest: "/vagrant/browsh_1.8.2_linux_{{ architecture }}.deb"
     mode: '0644'
 
 - name: Install Browsh package
   ansible.builtin.apt:
-    deb: "/vagrant/browsh_1.8.0_linux_{{ architecture }}.deb"
+    deb: "/vagrant/browsh_1.8.2_linux_{{ architecture }}.deb"
     state: present
   register: apt_install
   become: true
-  notify: Remove downloaded .deb package
