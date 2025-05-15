@@ -1,3 +1,5 @@
 #!/bin/bash
 
-/opt/zaproxy/zap.sh -daemon -port 8090 -config api.disablekey=true -dir /opt/zaproxy/data
+export JAVA_OPTS="-Xmx1024m"
+
+/opt/zaproxy/zap.sh -daemon -port 8090 -config api.disablekey=true -config connection.timeoutInSecs=120 -config database.recoverylog=false -dir /opt/zaproxy/data
