@@ -6,8 +6,10 @@ This document is a high level introduction to some security testing tools that a
 
 ## Vagrant Environment
 
-1. [Ansible (2.9.4)](https://www.ansible.com/)
-2. [Vagrant (2.2.6)](https://www.vagrantup.com/)
+1. [Ansible (2.18.5)](https://www.ansible.com/)
+2. [Vagrant (2.4.5)](https://www.vagrantup.com/)
+3. [Docker (28.1.1)](https://www.docker.com/)
+4. [Colima (0.8.1)](https://github.com/abiosoft/colima)
 
 ### Running
 
