@@ -1,0 +1,44 @@
+- name: Create theHarvester config directory with proper permissions
+  ansible.builtin.file:
+    path: /usr/local/etc/theHarvester
+    state: directory
+    mode: '0755'
+  become: true
+
+- name: Install theHarvester using command
+  ansible.builtin.command: >
+    pipx install git+https://github.com/laramies/theHarvester.git
+  args:
+    creates: /home/vagrant/.local/bin/theHarvester
+  register: theharvester_install
+  changed_when: theharvester_install.rc is not defined or theharvester_install.rc == 0
+  failed_when: theharvester_install.rc is defined and theharvester_install.rc != 0
+
+- name: Create example proxies.yaml file
+  ansible.builtin.copy:
+    dest: /usr/local/etc/theHarvester/proxies.yaml
+    mode: '0644'
+    content: |
+      http: []
+      https: []
+  become: true
+
+- name: Create example api-keys.yaml file
+  ansible.builtin.copy:
+    dest: /usr/local/etc/theHarvester/api-keys.yaml
+    mode: '0644'
+    content: |
+      apikeys:
+        bing:
+          key: ""
+        github:
+          key: ""
+        hunter:
+          key: ""
+        intelx:
+          key: ""
+        securityTrails:
+          key: ""
+        shodan:
+          key: ""
+  become: true

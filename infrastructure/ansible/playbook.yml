@@ -41,7 +41,7 @@
     - dig
     - mz
     - mitmproxy
-    - spiderfoot
+    - the-harvester
     - semgrep
     - browsh
     - zap

@@ -134,10 +134,12 @@ mitmproxy -R https://some.domain.com:<port>/
 
 ### Harvesting
 
-#### SpiderFoot
+#### theHarvester
+
+**NOTE:** you will need to update the `/usr/local/etc/theHarvester/api-keys.yaml` file on your `vagrant` `docker` container for `hunter` results
 
 ```
-spiderfoot -s domain.com -m all -o report.html
+theHarvester -d domain.com -b duckduckgo,hunter -l 500 -f report/report.html | cat -v
 ```
 
 ### Security Reconnaissance
