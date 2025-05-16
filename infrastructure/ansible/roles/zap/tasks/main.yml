@@ -63,11 +63,13 @@
     mode: '0755'
   become: true
 
-- name: Execute ZAP daemon script
-  ansible.builtin.command: /usr/local/bin/zap-daemon.sh
-  args:
-    creates: /var/log/zap-daemon.log
+- name: Add start of zap daemon to profile
+  ansible.builtin.copy:
+    dest: /etc/profile.d/zap.sh
+    content: |
+      #!/bin/bash
+      if ! pgrep -f "zap.sh -daemon" > /dev/null; then
+        sudo /usr/local/bin/zap-daemon.sh > /dev/null 2>&1 &
+      fi
+    mode: '0755'
   become: true
-  changed_when: false
-  async: 60
-  poll: 0
