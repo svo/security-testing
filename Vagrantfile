@@ -18,6 +18,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     tooling.vm.hostname = 'security-testing-tooling'
+    tooling.vm.network :forwarded_port, id: 'ssh', guest: 22, host: 2314, host_ip: '127.0.0.1'
     tooling.vm.network :private_network, ip: '10.6.6.6'
 
     tooling.vm.provision 'ansible' do |ansible|
@@ -40,6 +41,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     victim.vm.hostname = 'security-testing-victim'
+    victim.vm.network :forwarded_port, id: 'ssh', guest: 22, host: 2315, host_ip: '127.0.0.1'
     victim.vm.network :private_network, ip: '10.6.6.7'
 
     victim.vm.provision 'ansible' do |ansible|
@@ -69,7 +71,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       docker.image = 'bkimminich/juice-shop'
       docker.has_ssh = false
       docker.pull = true
-      docker.ports = ['3000:3000']
+      docker.ports = ['3004:3000']
       docker.create_args = [
         '--memory=256m',
         '--cpu-shares=50',
@@ -85,7 +87,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       docker.image = 'webgoat/webgoat'
       docker.has_ssh = false
       docker.pull = true
-      docker.ports = ['3001:8080']
+      docker.ports = ['3009:8080']
     end
     webgoat.vm.hostname = 'security-testing-webgoat'
     webgoat.vm.network :private_network, ip: '10.6.6.10'
@@ -96,7 +98,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       docker.image = 'ianwijaya/hackazon'
       docker.has_ssh = false
       docker.pull = true
-      docker.ports = ['3002:80', '3003:443']
+      docker.ports = ['3006:80', '3007:443']
     end
     hackazon.vm.hostname = 'security-testing-hackazon'
     hackazon.vm.network :private_network, ip: '10.6.6.11'
